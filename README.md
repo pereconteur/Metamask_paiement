@@ -1,2 +1,2 @@
-# Metamask_paiement
+# Metamask paiement
 Pay using Metamask
