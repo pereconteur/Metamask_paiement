@@ -15,6 +15,24 @@ let info_crypto = {
         'url' : 'https://api.coingecko.com/api/v3/simple/price?ids=avalanche-2&vs_currencies=eur',
         'symbol' : 'AVAX'
     },
+    "bnb" : {
+        'name' : 'binancecoin',
+        'id_network' : 56,
+        'url' : 'https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=eur',
+        'symbol' : 'BNB'
+    },
+    "polygon" : {
+        'name' : 'matic-network',
+        'id_network' : 137,
+        'url' : 'https://api.coingecko.com/api/v3/simple/price?ids=matic-network&vs_currencies=eur',
+        'symbol' : 'MATIC'
+    },
+    "fantom" : {
+        'name' : 'fantom',
+        'id_network' : 250,
+        'url' : 'https://api.coingecko.com/api/v3/simple/price?ids=fantom&vs_currencies=eur',
+        'symbol' : 'FTM'
+    },
     "eth_goerli" : {
         'name' : 'ethereum',
         'id_network' : 5,
@@ -94,14 +112,15 @@ window.ethereum.on('chainChanged', function(networkId){
 
 window.ethereum.on('accountsChanged', function (accounts) {
     recupDonneCompte();
-}) // Si l'utilisateur change de compte
+}); // Si l'utilisateur change de compte
 
 boutton_de_paiement.addEventListener('click', () =>{
-    amount = '0x'+(prix_du_produit/prix_crypto*10**18).toString(16);
+    amount = '0x'+(prix_du_produit/(prix_crypto)*10**18).toString(16);
     let transactionParam = {
-        to: '0x40769010B1d8dA360c3EFd46e6e345a86Bc5158B', //Wallet du receveur de fond
+        to: '0x0634d1E803E2114e36EcD0666Ce15B580EA2752B', //Wallet du receveur de fond
         from: account,
-        value: amount
+        value: amount,
+        gas: "0x5208"
     };
 
     ethereum.request({method: 'eth_sendTransaction', params:[transactionParam]}).then(txhash => {
