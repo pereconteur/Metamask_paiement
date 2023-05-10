@@ -26,5 +26,5 @@ Please make sure to update tests as appropriate.
 
 ## Follow me
 
-[Youtube](https://www.youtube.com/channel/UC5XJLz-Gnv8_T61wMXu-K-A)
-[Twitch](https://www.twitch.tv/pereconteur)
+[![youtube](![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UC5XJLz-Gnv8_T61wMXu-K-A?label=PereConteur&style=social))](https://www.youtube.com/channel/UC5XJLz-Gnv8_T61wMXu-K-A)
+[![twitch](https://img.shields.io/twitch/status/pereconteur?label=PereConteur&style=social)](https://www.twitch.tv/pereconteur)
