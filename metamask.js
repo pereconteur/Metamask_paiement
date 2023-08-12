@@ -38,10 +38,16 @@ let info_crypto = {
         'id_network' : 5,
         'url' : 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur',
         'symbol' : 'ETH-Gerli'
+    },
+    "sepolia" : {
+        'name' : 'ethereum',
+        'id_network' : 11155111,
+        'url' : 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur',
+        'symbol' : 'Sepolia'
     }
-}; // Tableau des differentes crypto
-let prix_crypto; // recuperation du prix de la crypto dynamiquement
+}; // Tableau des différentes cryptos.
 
+let prix_crypto; // Récupération dynamique du prix de la crypto.  
 let account; // Stockage du compte utilisateur
 let amount; // Montant total à payer en fonction de la crypto
 let prix_du_produit = 100; // Prix à payer pour l'utilisateur
@@ -50,7 +56,7 @@ if (!window.ethereum){ // Si l'utilisateur n'a pas Metamask
     boutton_de_connexion.addEventListener('click', () => {
         window.open('https://metamask.io/download/', '_blank');
     })
-} // Verification de la presence de Metamask
+} // Vérification de la présence de Metamask.
 
 boutton_de_connexion.addEventListener('click', recupDonneCompte); // Connexion
 
@@ -70,7 +76,7 @@ function recupDonneCompte (){
         });
     });
     verification(window.ethereum.networkVersion); // Verification du network dans lequelle nous nous trouvons
-} // Récuperation du compte Metamask actuel
+} // Récupération du compte Metamask actuel.
 
 function verification(idNetwork){
     for (let crypto in info_crypto) {
@@ -83,9 +89,9 @@ function verification(idNetwork){
         }
     }
     console.log('no data fund');
-} // Verification du network actuel
+} // Vérification du réseau actuel
 
-function definitionPrix(nom, url, symbol) { // argument correspondant à la crypto principal de la chain detecter lors de Verification()à
+function definitionPrix(nom, url, symbol) { // Argument correspondant à la crypto principale de la chaîne détectée lors de la vérification().
     let requete = new XMLHttpRequest();
     requete.open('GET', url);
     requete.responseType = 'json';
@@ -108,16 +114,16 @@ function definitionPrix(nom, url, symbol) { // argument correspondant à la cryp
 
 window.ethereum.on('chainChanged', function(networkId){
     verification(networkId);
-}); //si l'utilisateur change de reseaux (AVAX, ETH...)
+}); //Si l'utilisateur change de réseau (AVAX, ETH...).
 
 window.ethereum.on('accountsChanged', function (accounts) {
     recupDonneCompte();
-}); // Si l'utilisateur change de compte
+}); // Si l'utilisateur change de compte.
 
 boutton_de_paiement.addEventListener('click', () =>{
     amount = '0x'+(prix_du_produit/(prix_crypto)*10**18).toString(16);
     let transactionParam = {
-        to: '0x0634d1E803E2114e36EcD0666Ce15B580EA2752B', //Wallet du receveur de fond
+        to: '0x9511741Fb06fb03ce88a0E97c729fE07C0107469', //Wallet du destinataire des fonds.
         from: account,
         value: amount,
         gas: "0x5208"
